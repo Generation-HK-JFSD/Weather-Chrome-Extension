@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
+import API_PATHS from './constants/api';
 
 function CurrentWeather() {
   const [weatherData, setWeatherData] = useState(null);
 
   useEffect(() => {
-    const url =
-      'https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=rhrread&lang=tc';
-    fetch(url)
+    fetch(API_PATHS.Current_Weather_Report)
       .then((res) => {
         console.log('res', res);
         return res.json();
