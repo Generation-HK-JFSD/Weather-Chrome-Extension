@@ -6,8 +6,8 @@ import WeatherByLocation from './WeatherByLocation';
 function App() {
   return (
     <>
-      <WeatherByLocation />
-      <hr />
+      {/* <WeatherByLocation /> */}
+      {/* <hr /> */}
       <CurrentWeather />
       {/* <Test /> */}
     </>

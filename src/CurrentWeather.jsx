@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import API_PATHS from './constants/api';
 import WeatherIcon from './WeatherIcon';
+import NewWeatherByLocation from './NewWeatherByLocation';
 
 function CurrentWeather() {
   const [weatherData, setWeatherData] = useState(null);
@@ -11,9 +12,9 @@ function CurrentWeather() {
         // console.log('res', res);
         return res.json();
       })
-      .then((obj) => {
-        // console.log('obj', obj);
-        setWeatherData(obj);
+      .then((json) => {
+        // console.log('json', json);
+        setWeatherData(json);
       });
   }, []);
 
@@ -39,19 +40,10 @@ function CurrentWeather() {
 
   return (
     <>
+      <NewWeatherByLocation currentWeather={weatherData} />
       <div>
         Weather Icon:
         <WeatherIcon iconNum={weatherData?.icon} />
-      </div>
-      <div id='temp'>
-        {weatherData &&
-          weatherData.temperature.data.map((el, idx) => {
-            return (
-              <p key={idx}>
-                {el.place}: {el.value}°C
-              </p>
-            );
-          })}
       </div>
       <div id='uvindex'>
         <h2>UV Index</h2>

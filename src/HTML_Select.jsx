@@ -1,4 +1,4 @@
-function Select({ name, options, onChangeHandler, selectedValue }) {
+function Select({ name, options = [], onChangeHandler, selectedValue }) {
   let select = (
     <select name={name} onChange={onChangeHandler} value={selectedValue}>
       {options.map((el) => {
