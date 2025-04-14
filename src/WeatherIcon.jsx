@@ -1,4 +1,4 @@
-import pathHelper from './utils/Path';
+import pathHelper from './utils/path';
 
 function WeatherIcon({ iconNum }) {
   if (!iconNum) return <div>Data Missing</div>;

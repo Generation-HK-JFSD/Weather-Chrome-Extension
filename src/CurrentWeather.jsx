@@ -8,11 +8,11 @@ function CurrentWeather() {
   useEffect(() => {
     fetch(API_PATHS.Current_Weather_Report)
       .then((res) => {
-        console.log('res', res);
+        // console.log('res', res);
         return res.json();
       })
       .then((obj) => {
-        console.log('obj', obj);
+        // console.log('obj', obj);
         setWeatherData(obj);
       });
   }, []);

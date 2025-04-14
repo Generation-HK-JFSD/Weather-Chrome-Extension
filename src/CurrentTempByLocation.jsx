@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import API_PATHS from './constants/api';
 import Select from './HTML_Select';
+import Rainfall from './Rainfall';
 
 function CurrentTempByLocation() {
   // json obj of current weather api response
@@ -37,7 +38,6 @@ function CurrentTempByLocation() {
   // console.log('currentWeatherRes', currentWeatherRes);
 
   let tempOfSelectedLocation;
-  // const [tempOfSelectedLocation, setTempOfSelectedLocation] = useState(null);
 
   if (currentWeather.temperature !== undefined) {
     // console.log(
@@ -48,13 +48,13 @@ function CurrentTempByLocation() {
     let locationTempsFiltered = currentWeather.temperature.data.filter(
       (el) => el.place === selectedLocation
     );
-    console.log('locationTempsFiltered', locationTempsFiltered);
+    // console.log('locationTempsFiltered', locationTempsFiltered);
     if (locationTempsFiltered.length === 1) {
       tempOfSelectedLocation = locationTempsFiltered[0].value;
     }
   }
 
-  let disTempOfSelectedLocation = tempOfSelectedLocation
+  let tempOfSelectedLocationDisplay = tempOfSelectedLocation
     ? `${tempOfSelectedLocation} °C`
     : 'N/A';
 
@@ -67,7 +67,11 @@ function CurrentTempByLocation() {
         onChangeHandler={locationOnChangeHandler}
         selectedValue={selectedLocation}
       />
-      <p>Temperature: {disTempOfSelectedLocation}</p>
+      <p>Temperature: {tempOfSelectedLocationDisplay}</p>
+      <Rainfall
+        rainData={currentWeather.rainfall?.data}
+        selectedLocation={selectedLocation}
+      />
     </div>
   );
 }
