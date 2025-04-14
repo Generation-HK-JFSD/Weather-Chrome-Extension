@@ -3,7 +3,7 @@ import API_PATHS from './constants/api';
 import Select from './HTML_Select';
 import Rainfall from './Rainfall';
 
-function CurrentTempByLocation() {
+function WeatherByLocation() {
   // json obj of current weather api response
   const [currentWeather, setCurrentWeatherRes] = useState({});
   // location temp array from current weather api response
@@ -76,4 +76,4 @@ function CurrentTempByLocation() {
   );
 }
 
-export default CurrentTempByLocation;
+export default WeatherByLocation;

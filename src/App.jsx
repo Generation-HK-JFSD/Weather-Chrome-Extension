@@ -1,12 +1,12 @@
 import './App.css';
 import CurrentWeather from './CurrentWeather';
-import CurrentTempByLocation from './CurrentTempByLocation';
+import WeatherByLocation from './WeatherByLocation';
 // import Test from './Test';
 
 function App() {
   return (
     <>
-      <CurrentTempByLocation />
+      <WeatherByLocation />
       <hr />
       <CurrentWeather />
       {/* <Test /> */}
