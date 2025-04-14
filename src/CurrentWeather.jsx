@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import API_PATHS from './constants/api';
+import WeatherIcon from './WeatherIcon';
 
 function CurrentWeather() {
   const [weatherData, setWeatherData] = useState(null);
@@ -38,6 +39,10 @@ function CurrentWeather() {
 
   return (
     <>
+      <div>
+        Weather Icon:
+        <WeatherIcon iconNum={weatherData?.icon} />
+      </div>
       <div id='temp'>
         {weatherData &&
           weatherData.temperature.data.map((el, idx) => {
