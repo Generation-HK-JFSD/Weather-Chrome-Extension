@@ -14,6 +14,7 @@ function Body2() {
   }
   let temperatureDataArr;
   let locationOptions;
+  let tempOfSelectedLocation;
 
   useEffect(() => {
     fetch(API_PATHS.Current_Weather_Report)
@@ -36,7 +37,18 @@ function Body2() {
   if (weatherData.temperature !== undefined) {
     temperatureDataArr = weatherData.temperature.data;
     locationOptions = temperatureDataArr;
+
+    let locationTempsFiltered = temperatureDataArr.filter(
+      (el) => el.place === selectedLocation
+    );
+
+    if (locationTempsFiltered.length === 1) {
+      tempOfSelectedLocation = locationTempsFiltered[0].value;
+    }
   }
+  let tempOfSelectedLocationDisplay = tempOfSelectedLocation
+    ? `${tempOfSelectedLocation} °C`
+    : 'N/A';
 
   // let { uvindex, humidity, updateTime } = weatherData;
   let uvindex = weatherData?.uvindex;
@@ -62,37 +74,6 @@ function Body2() {
     <div className='flex justify-between items-center gap-6'>
       <div className='flex-grow flex flex-col gap-4'>
         <div className='flex flex-col gap-1'>
-          {/* <select
-            className='self-start bg-[rgba(0,0,0,0.1)] rounded-lg px-3 py-2 border-r-12 border-transparent text-2xl'
-            name='districts'
-            id='districts'
-          >
-            <optgroup label='香港島'>
-              <option value='中西區'>中西區</option>
-              <option value='東區'>東區</option>
-              <option value='南區'>南區</option>
-              <option value='灣仔'>灣仔</option>
-            </optgroup>
-            <optgroup label='九龍'>
-              <option value='油尖旺'>油尖旺</option>
-              <option value='深水埗'>深水埗</option>
-              <option value='九龍城'>九龍城</option>
-              <option value='黃大仙'>黃大仙</option>
-              <option value='觀塘'>觀塘</option>
-            </optgroup>
-            <optgroup label='新界'>
-              <option value='葵青'>葵青</option>
-              <option value='離島區'>離島區</option>
-              <option value='北區'>北區</option>
-              <option value='西貢'>西貢</option>
-              <option value='沙田'>沙田</option>
-              <option value='大埔'>大埔</option>
-              <option value='荃灣'>荃灣</option>
-              <option value='屯門'>屯門</option>
-              <option value='元朗'>元朗</option>
-            </optgroup>
-          </select> */}
-
           <Select
             options={locationOptions}
             onChangeHandler={locationOnChangeHandler}
@@ -101,7 +82,7 @@ function Body2() {
           />
 
           <div className='flex items-center gap-1 px-4'>
-            <p className='text-5xl'>24</p>
+            <p className='text-5xl'>{tempOfSelectedLocation}</p>
             <p className='text-2xl'>°C</p>
           </div>
         </div>
@@ -114,6 +95,7 @@ function Body2() {
         </div>
       </div>
       {/* <i className='wi wi-day-cloudy text-[168px] px-3 py-12 opacity-20'></i> */}
+      {/* TODO add css for weather icon */}
       <WeatherIcon iconNum={weatherData?.icon} className='w-50' />
     </div>
   );
