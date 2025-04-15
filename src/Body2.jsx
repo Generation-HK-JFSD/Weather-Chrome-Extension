@@ -81,6 +81,8 @@ function Body2() {
   let updateTime = weatherData?.updateTime ?? 'No Data';
 
   let uvLine = 'No Data';
+  let uvValue = 'N/A';
+  let uvLevel = 'N/A';
   let uvMsg = 'No Data';
   let humidityValue = 'No Data';
 
@@ -89,6 +91,8 @@ function Body2() {
 
   if (uvindex) {
     uvLine = `${uvindex.data[0].value} ${uvindex.data[0].desc}`;
+    uvValue = uvindex.data[0].value;
+    uvLevel = uvindex.data[0].desc;
     uvMsg = uvindex.data[0].message;
   }
   if (humidity) {
@@ -115,7 +119,7 @@ function Body2() {
         <div className='grid grid-cols-2 grid-rows-2 gap-4 bg-[rgba(0,0,0,0.1)] p-4 rounded-lg'>
           <Data param='相對濕度' value={humidityValue} unit='%' />
           <Data param='雨量' value={maxRainfallDisplay} unit='mm' />
-          <Data param='紫外線指數' value={uvLine} unit='高' />
+          <Data param='紫外線指數' value={uvValue} unit={uvLevel} />
           <Data param='空氣污染指數' value='9' unit='甚高' />
         </div>
       </div>
