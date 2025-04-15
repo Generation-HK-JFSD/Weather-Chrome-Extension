@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       {/* <CurrentWeather /> */}
-      <NineDayWeatherForecast />
+      {/* <NineDayWeatherForecast /> */}
       <Extension />
     </>
   );
