@@ -3,9 +3,17 @@ import API_PATHS from './constants/api';
 import WeatherIcon from './WeatherIcon';
 import NewWeatherByLocation from './NewWeatherByLocation';
 import Data from './Data';
+import Select from './HTML_Select';
 
 function Body2() {
-  const [weatherData, setWeatherData] = useState(null);
+  const [weatherData, setWeatherData] = useState({});
+
+  const [selectedLocation, setSelectedLocation] = useState('');
+  function locationOnChangeHandler(e) {
+    setSelectedLocation(e.target.value);
+  }
+  let temperatureDataArr;
+  let locationOptions;
 
   useEffect(() => {
     fetch(API_PATHS.Current_Weather_Report)
@@ -18,6 +26,17 @@ function Body2() {
         setWeatherData(json);
       });
   }, []);
+
+  useEffect(() => {
+    if (weatherData.temperature !== undefined) {
+      setSelectedLocation(weatherData.temperature.data[0].place);
+    }
+  }, [weatherData]);
+
+  if (weatherData.temperature !== undefined) {
+    temperatureDataArr = weatherData.temperature.data;
+    locationOptions = temperatureDataArr;
+  }
 
   // let { uvindex, humidity, updateTime } = weatherData;
   let uvindex = weatherData?.uvindex;
@@ -43,7 +62,7 @@ function Body2() {
     <div className='flex justify-between items-center gap-6'>
       <div className='flex-grow flex flex-col gap-4'>
         <div className='flex flex-col gap-1'>
-          <select
+          {/* <select
             className='self-start bg-[rgba(0,0,0,0.1)] rounded-lg px-3 py-2 border-r-12 border-transparent text-2xl'
             name='districts'
             id='districts'
@@ -72,7 +91,15 @@ function Body2() {
               <option value='屯門'>屯門</option>
               <option value='元朗'>元朗</option>
             </optgroup>
-          </select>
+          </select> */}
+
+          <Select
+            options={locationOptions}
+            onChangeHandler={locationOnChangeHandler}
+            selectedValue={selectedLocation}
+            className='self-start bg-[rgba(0,0,0,0.1)] rounded-lg px-3 py-2 border-r-12 border-transparent text-2xl'
+          />
+
           <div className='flex items-center gap-1 px-4'>
             <p className='text-5xl'>24</p>
             <p className='text-2xl'>°C</p>
