@@ -4,14 +4,39 @@ import WeatherIcon from './WeatherIcon';
 import NewWeatherByLocation from './NewWeatherByLocation';
 import Data from './Data';
 import Select from './HTML_Select';
+import helper from './utils/helper';
 
 function Body2() {
   const [weatherData, setWeatherData] = useState({});
 
   const [selectedLocation, setSelectedLocation] = useState('');
+
   function locationOnChangeHandler(e) {
     setSelectedLocation(e.target.value);
   }
+
+  function getRainfall(weatherData, selectedLocation) {
+    let rainfall = 'No Data';
+    let rainData = weatherData.rainfall?.data;
+
+    if (rainData) {
+      let filter = rainData.filter(
+        (el) => el.place === helper.districtToArea(selectedLocation)
+      );
+
+      if (filter.length === 1) {
+        if (filter[0].main === 'TRUE') {
+          rainfall = 'Under Maintenance';
+        } else {
+          rainfall = filter[0].max;
+        }
+      }
+    }
+
+    return rainfall;
+  }
+
+  let maxRainfallDisplay = getRainfall(weatherData, selectedLocation);
   let temperatureDataArr;
   let locationOptions;
   let tempOfSelectedLocation;
@@ -89,7 +114,7 @@ function Body2() {
 
         <div className='grid grid-cols-2 grid-rows-2 gap-4 bg-[rgba(0,0,0,0.1)] p-4 rounded-lg'>
           <Data param='相對濕度' value={humidityValue} unit='%' />
-          <Data param='雨量' value='0' unit='mm' />
+          <Data param='雨量' value={maxRainfallDisplay} unit='mm' />
           <Data param='紫外線指數' value={uvLine} unit='高' />
           <Data param='空氣污染指數' value='9' unit='甚高' />
         </div>
