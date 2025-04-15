@@ -90,6 +90,18 @@ function districtToArea(district) {
   return area;
 }
 
-const helper = { districtToArea };
+function isObjectEmpty(obj) {
+  if (typeof obj !== 'object') throw new Error('It is not object');
+
+  for (const prop in obj) {
+    if (Object.hasOwn(obj, prop)) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+const helper = { districtToArea, isObjectEmpty };
 
 export default helper;

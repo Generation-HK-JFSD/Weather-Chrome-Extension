@@ -1,10 +1,12 @@
 import './App.css';
 import CurrentWeather from './CurrentWeather';
+import NineDayWeatherForecast from './NineDayWeatherForecast';
 
 function App() {
   return (
     <>
-      <CurrentWeather />
+      {/* <CurrentWeather /> */}
+      <NineDayWeatherForecast />
     </>
   );
 }
