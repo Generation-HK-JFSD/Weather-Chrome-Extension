@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Chrome Ext Proj",
+  "name": "Hong Kong Weather NOW",
   "version": "1.0",
-  "description": "",
+  "description": "Show Hong Kong weather information. Data from Hong Kong Government.",
   "action": {
     "default_popup": "index.html"
   }

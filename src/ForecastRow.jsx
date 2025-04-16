@@ -5,8 +5,11 @@ function ForecastRow({ day, iconPath, minTemp, maxTemp, minRH, maxRH, PSR }) {
         <p className='text-base'>{day}</p>
         {/* <i className={`wi wi-${icon} text-2xl`}></i> */}
 
-        {/* TODO CSS style for icon */}
-        <img src={iconPath} className='h-8 filter grayscale' />
+        <img
+          src={iconPath}
+          className='h-8 filter grayscale'
+          draggable='false'
+        />
       </div>
       <div className='flex items-center gap-1'>
         <p className='text-xl'>
