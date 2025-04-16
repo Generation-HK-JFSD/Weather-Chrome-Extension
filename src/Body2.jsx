@@ -102,8 +102,8 @@ function Body2() {
 
   return (
     <>
-      <div className='flex justify-between items-center gap-6'>
-        <div className='flex-grow flex flex-col gap-4'>
+      <div className='grid grid-cols-2 items-center gap-6'>
+        <div className='flex flex-col gap-4'>
           <div className='flex flex-col gap-1'>
             <Select
               options={locationOptions}
@@ -127,7 +127,10 @@ function Body2() {
         </div>
         {/* <i className='wi wi-day-cloudy text-[168px] px-3 py-12 opacity-20'></i> */}
         {/* TODO add css for weather icon */}
-        <WeatherIcon iconNum={weatherData?.icon} className='w-50' />
+        <WeatherIcon
+          iconNum={weatherData?.icon}
+          className=' filter grayscale opacity-40'
+        />
       </div>
 
       {/* TODO Review the icon of warning messages */}
