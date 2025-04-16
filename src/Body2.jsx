@@ -35,6 +35,24 @@ function Body2() {
     return rainfall;
   }
 
+  function changeBackgroundColorByTemperature(temperature) {
+    const extensionDiv = document.getElementById('extension');
+    // console.log('extensionDiv', extensionDiv);
+
+    if (temperature !== '--') {
+      if (temperature >= 30) extensionDiv.style.backgroundColor = '#732626';
+      else if (temperature >= 25)
+        extensionDiv.style.backgroundColor = '#734c26';
+      else if (temperature >= 20)
+        extensionDiv.style.backgroundColor = '#397326';
+      else if (temperature >= 15)
+        extensionDiv.style.backgroundColor = '#264c73';
+      else {
+        extensionDiv.style.backgroundColor = '#264c73';
+      }
+    }
+  }
+
   let maxRainfallDisplay = getRainfall(weatherData, selectedLocation);
   let temperatureDataArr;
   let locationOptions;
@@ -81,6 +99,8 @@ function Body2() {
   }
   let tempOfSelectedLocationDisplay =
     tempOfSelectedLocation === '--' ? '--' : `${tempOfSelectedLocation} °C`;
+  // changeBackgroundColorByTemperature(tempOfSelectedLocation);
+  changeBackgroundColorByTemperature(tempOfSelectedLocation);
 
   // let { uvindex, humidity, updateTime } = weatherData;
   let uvindex = weatherData?.uvindex;
