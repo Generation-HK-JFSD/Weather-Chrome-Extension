@@ -78,7 +78,13 @@ function Body2() {
   // let { uvindex, humidity, updateTime } = weatherData;
   let uvindex = weatherData?.uvindex;
   let humidity = weatherData?.humidity;
+<<<<<<< HEAD
   let updateTime = weatherData?.updateTime ?? '未有更新';
+=======
+  let updateTimeDisplay = weatherData?.updateTime
+    ? new Date(weatherData.updateTime).toLocaleString('zh-HK')
+    : 'No Data';
+>>>>>>> 81fe595b4abad8abbdc6f1fd366a4691083f2c56
 
   let uvLine = '--';
   let uvValue = '--';
@@ -89,6 +95,8 @@ function Body2() {
   // warningMessage from response will be either array of string or ""
   let warningMessages = weatherData?.warningMessage;
   let rainstormReminder = weatherData?.rainstormReminder;
+  let showWarningMessages =
+    Array.isArray(warningMessages) && warningMessages.length > 0;
 
   if (uvindex) {
     uvLine = `${uvindex.data[0].value} ${uvindex.data[0].desc}`;
@@ -125,39 +133,27 @@ function Body2() {
             <Data param='空氣污染指數' value='9' unit='甚高' />
           </div>
         </div>
-        {/* <i className='wi wi-day-cloudy text-[168px] px-3 py-12 opacity-20'></i> */}
-        {/* TODO add css for weather icon */}
         <WeatherIcon
           iconNum={weatherData?.icon}
           className='col-span-2 filter grayscale opacity-40'
         />
       </div>
 
-      {/* TODO Review the icon of warning messages */}
-      <div className='flex flex-col gap-4 bg-[rgba(0,0,0,0.1)] p-4 rounded-lg'>
-        {Array.isArray(warningMessages) === false
-          ? null
-          : warningMessages.map((el) => {
-              <div className='flex gap-4 item-center'>
-                <img src='./assets/warning-symbols/hot.png'></img>
-                <p>{el}</p>
-              </div>;
-            })}
-
-        {/* ===== warning message for dummy data ===== */}
-        {/* <div className='flex gap-4 item-center'>
-          <img src='./assets/warning-symbols/hot.png'></img>
-          <p>香港天文台在下午1時45分發出酷熱天氣警告。</p>
+      {/* TODO display correct icon for warning messages */}
+      {showWarningMessages && (
+        <div className='flex flex-col gap-4 bg-[rgba(0,0,0,0.1)] p-4 rounded-lg'>
+          {warningMessages.map((el) => {
+            <div className='flex gap-4 item-center'>
+              <img src='./assets/warning-symbols/hot.png'></img>
+              <p>{el}</p>
+            </div>;
+          })}
         </div>
-        <div className='flex gap-4 item-center'>
-          <img src='./assets/warning-symbols/hot.png'></img>
-          <p>現時之火災危險警告為紅色，表示火災危險性極高。</p>
-        </div> */}
-      </div>
+      )}
 
       <div className='flex gap-4 justify-center items-center text-sm'>
-        {/* TODO format update time */}
-        <p>更新時間: {updateTime}</p>
+
+        <p>更新時間: {updateTimeDisplay}</p>
         <p className='bg-[rgba(0,0,0,0.1)] px-2 py-1 rounded-lg'>香港天文台</p>
         <p className='bg-[rgba(0,0,0,0.1)] px-2 py-1 rounded-lg'>環境保護署</p>
       </div>
