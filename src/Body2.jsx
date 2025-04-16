@@ -156,12 +156,18 @@ function Body2() {
         />
       </div>
 
-      {/* TODO display correct icon for warning messages */}
+      {/* <div className='flex flex-col gap-4 bg-[rgba(0,0,0,0.1)] p-4 rounded-lg'>
+        <div className='flex gap-4 item-center'>
+          <p>香港天文台在下午1時45分發出酷熱天氣警告。</p>
+        </div>
+        <div className='flex gap-4 item-center'>
+          <p>現時之火災危險警告為紅色，表示火災危險性極高。</p>
+        </div>
+      </div> */}
       {showWarningMessages && (
         <div className='flex flex-col gap-4 bg-[rgba(0,0,0,0.1)] p-4 rounded-lg'>
           {warningMessages.map((el) => {
             <div className='flex gap-4 item-center'>
-              <img src='./assets/warning-symbols/hot.png'></img>
               <p>{el}</p>
             </div>;
           })}
