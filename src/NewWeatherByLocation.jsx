@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import API_PATHS from './constants/api';
 import Select from './HTML_Select';
 import Rainfall from './Rainfall';
 

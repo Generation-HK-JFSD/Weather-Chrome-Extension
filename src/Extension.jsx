@@ -1,6 +1,4 @@
 import './App.css';
-import Data from './Data';
-import ForecastRow from './ForecastRow';
 import './assets/warning-symbols/hot.png';
 import Body2 from './Body2';
 import NineDayWeatherForecast from './NineDayWeatherForecast';

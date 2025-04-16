@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import API_PATHS from './constants/api';
 import WeatherIcon from './WeatherIcon';
-import NewWeatherByLocation from './NewWeatherByLocation';
 import Data from './Data';
 import Select from './HTML_Select';
 import helper from './utils/helper';
@@ -78,13 +77,9 @@ function Body2() {
   // let { uvindex, humidity, updateTime } = weatherData;
   let uvindex = weatherData?.uvindex;
   let humidity = weatherData?.humidity;
-<<<<<<< HEAD
-  let updateTime = weatherData?.updateTime ?? '未有更新';
-=======
   let updateTimeDisplay = weatherData?.updateTime
     ? new Date(weatherData.updateTime).toLocaleString('zh-HK')
-    : 'No Data';
->>>>>>> 81fe595b4abad8abbdc6f1fd366a4691083f2c56
+    : '未有更新';
 
   let uvLine = '--';
   let uvValue = '--';
@@ -152,7 +147,6 @@ function Body2() {
       )}
 
       <div className='flex gap-4 justify-center items-center text-sm'>
-
         <p>更新時間: {updateTimeDisplay}</p>
         <p className='bg-[rgba(0,0,0,0.1)] px-2 py-1 rounded-lg'>香港天文台</p>
         <p className='bg-[rgba(0,0,0,0.1)] px-2 py-1 rounded-lg'>環境保護署</p>
