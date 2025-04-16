@@ -3,6 +3,7 @@ import Data from './Data';
 import ForecastRow from './ForecastRow';
 import './assets/warning-symbols/hot.png';
 import Body2 from './Body2';
+import NineDayWeatherForecast from './NineDayWeatherForecast';
 
 function Extension() {
   return (
@@ -15,96 +16,7 @@ function Extension() {
       </div>
 
       <Body2 />
-
-      <div className='grid grid-rows-10 gap-4 bg-[rgba(0,0,0,0.1)] p-4 rounded-lg'>
-        <div className='grid grid-cols-4 gap-4 items-center'>
-          <div className='text-left'>未來九天</div>
-          <div className='text-left'>氣溫</div>
-          <div className='text-left'>相對濕度</div>
-          <div className='text-left'>顯著降雨概率</div>
-        </div>
-        <ForecastRow
-          day='星期二'
-          icon='day-cloudy'
-          minTemp='20'
-          maxTemp='25'
-          minRH='60'
-          maxRH='90'
-          PSR='<30'
-        />
-        <ForecastRow
-          day='星期二'
-          icon='day-cloudy'
-          minTemp='20'
-          maxTemp='25'
-          minRH='60'
-          maxRH='90'
-          PSR='<30'
-        />
-        <ForecastRow
-          day='星期二'
-          icon='day-cloudy'
-          minTemp='20'
-          maxTemp='25'
-          minRH='60'
-          maxRH='90'
-          PSR='<30'
-        />
-        <ForecastRow
-          day='星期二'
-          icon='day-cloudy'
-          minTemp='20'
-          maxTemp='25'
-          minRH='60'
-          maxRH='90'
-          PSR='<30'
-        />
-        <ForecastRow
-          day='星期二'
-          icon='day-cloudy'
-          minTemp='20'
-          maxTemp='25'
-          minRH='60'
-          maxRH='90'
-          PSR='<30'
-        />
-        <ForecastRow
-          day='星期二'
-          icon='day-cloudy'
-          minTemp='20'
-          maxTemp='25'
-          minRH='60'
-          maxRH='90'
-          PSR='<30'
-        />
-        <ForecastRow
-          day='星期二'
-          icon='day-cloudy'
-          minTemp='20'
-          maxTemp='25'
-          minRH='60'
-          maxRH='90'
-          PSR='<30'
-        />
-        <ForecastRow
-          day='星期二'
-          icon='day-cloudy'
-          minTemp='20'
-          maxTemp='25'
-          minRH='60'
-          maxRH='90'
-          PSR='<30'
-        />
-        <ForecastRow
-          day='星期二'
-          icon='day-cloudy'
-          minTemp='20'
-          maxTemp='25'
-          minRH='60'
-          maxRH='90'
-          PSR='<30'
-        />
-      </div>
+      <NineDayWeatherForecast />
     </div>
   );
 }
