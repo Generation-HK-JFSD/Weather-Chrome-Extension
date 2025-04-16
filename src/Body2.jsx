@@ -8,7 +8,7 @@ import helper from './utils/helper';
 
 function Body2() {
   const [weatherData, setWeatherData] = useState({});
-
+  const [AQHI_Data, setAQHI_Data] = useState([]);
   const [selectedLocation, setSelectedLocation] = useState('');
 
   function locationOnChangeHandler(e) {
@@ -40,6 +40,8 @@ function Body2() {
   let temperatureDataArr;
   let locationOptions;
   let tempOfSelectedLocation = '--';
+  let aqhi = '-';
+  let qahi_healthRisk = '-';
 
   useEffect(() => {
     fetch(API_PATHS.Current_Weather_Report)
@@ -48,8 +50,15 @@ function Body2() {
         return res.json();
       })
       .then((json) => {
-        console.log('json', json);
+        console.log('Current Weather Report json', json);
         setWeatherData(json);
+      });
+
+    fetch(API_PATHS.AQHI_of_Individual)
+      .then((res) => res.json())
+      .then((json) => {
+        console.log('Air Quality json', json);
+        setAQHI_Data(json);
       });
   }, []);
 
@@ -71,20 +80,15 @@ function Body2() {
       tempOfSelectedLocation = locationTempsFiltered[0].value;
     }
   }
-  let tempOfSelectedLocationDisplay = tempOfSelectedLocation
-    ? `${tempOfSelectedLocation} °C`
-    : '--';
+  let tempOfSelectedLocationDisplay =
+    tempOfSelectedLocation === '--' ? '--' : `${tempOfSelectedLocation} °C`;
 
   // let { uvindex, humidity, updateTime } = weatherData;
   let uvindex = weatherData?.uvindex;
   let humidity = weatherData?.humidity;
-<<<<<<< HEAD
-  let updateTime = weatherData?.updateTime ?? '未有更新';
-=======
   let updateTimeDisplay = weatherData?.updateTime
     ? new Date(weatherData.updateTime).toLocaleString('zh-HK')
-    : 'No Data';
->>>>>>> 81fe595b4abad8abbdc6f1fd366a4691083f2c56
+    : '未有更新';
 
   let uvLine = '--';
   let uvValue = '--';
@@ -106,6 +110,20 @@ function Body2() {
   }
   if (humidity) {
     humidityValue = humidity.data[0].value;
+  }
+
+  if (Array.isArray(AQHI_Data) && AQHI_Data.length > 0) {
+    let filtered = AQHI_Data.filter(
+      (el) =>
+        el.station ===
+        helper.nearestAirQualityMonitoringLocation(selectedLocation)
+    );
+    if (filtered.length > 0) {
+      aqhi = filtered[0].aqhi;
+      qahi_healthRisk = helper.qahi_healthRiskToChinese(
+        filtered[0].health_risk
+      );
+    }
   }
 
   return (
@@ -130,7 +148,7 @@ function Body2() {
             <Data param='相對濕度' value={humidityValue} unit='%' />
             <Data param='雨量' value={maxRainfallDisplay} unit='mm' />
             <Data param='紫外線指數' value={uvValue} unit={uvLevel} />
-            <Data param='空氣污染指數' value='9' unit='甚高' />
+            <Data param='空氣污染指數' value={aqhi} unit={qahi_healthRisk} />
           </div>
         </div>
         <WeatherIcon
@@ -152,7 +170,6 @@ function Body2() {
       )}
 
       <div className='flex gap-4 justify-center items-center text-sm'>
-
         <p>更新時間: {updateTimeDisplay}</p>
         <p className='bg-[rgba(0,0,0,0.1)] px-2 py-1 rounded-lg'>香港天文台</p>
         <p className='bg-[rgba(0,0,0,0.1)] px-2 py-1 rounded-lg'>環境保護署</p>
