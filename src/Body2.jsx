@@ -91,6 +91,8 @@ function Body2() {
   // warningMessage from response will be either array of string or ""
   let warningMessages = weatherData?.warningMessage;
   let rainstormReminder = weatherData?.rainstormReminder;
+  let showWarningMessages =
+    Array.isArray(warningMessages) && warningMessages.length > 0;
 
   if (uvindex) {
     uvLine = `${uvindex.data[0].value} ${uvindex.data[0].desc}`;
@@ -133,27 +135,17 @@ function Body2() {
         />
       </div>
 
-      {/* TODO Review the icon of warning messages */}
-      <div className='flex flex-col gap-4 bg-[rgba(0,0,0,0.1)] p-4 rounded-lg'>
-        {Array.isArray(warningMessages) === false
-          ? null
-          : warningMessages.map((el) => {
-              <div className='flex gap-4 item-center'>
-                <img src='./assets/warning-symbols/hot.png'></img>
-                <p>{el}</p>
-              </div>;
-            })}
-
-        {/* ===== warning message for dummy data ===== */}
-        {/* <div className='flex gap-4 item-center'>
-          <img src='./assets/warning-symbols/hot.png'></img>
-          <p>香港天文台在下午1時45分發出酷熱天氣警告。</p>
+      {/* TODO display correct icon for warning messages */}
+      {showWarningMessages && (
+        <div className='flex flex-col gap-4 bg-[rgba(0,0,0,0.1)] p-4 rounded-lg'>
+          {warningMessages.map((el) => {
+            <div className='flex gap-4 item-center'>
+              <img src='./assets/warning-symbols/hot.png'></img>
+              <p>{el}</p>
+            </div>;
+          })}
         </div>
-        <div className='flex gap-4 item-center'>
-          <img src='./assets/warning-symbols/hot.png'></img>
-          <p>現時之火災危險警告為紅色，表示火災危險性極高。</p>
-        </div> */}
-      </div>
+      )}
 
       <div className='flex gap-4 justify-center items-center'>
         <p>更新時間: {updateTimeDisplay}</p>
