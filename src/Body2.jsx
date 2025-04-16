@@ -78,7 +78,9 @@ function Body2() {
   // let { uvindex, humidity, updateTime } = weatherData;
   let uvindex = weatherData?.uvindex;
   let humidity = weatherData?.humidity;
-  let updateTime = weatherData?.updateTime ?? 'No Data';
+  let updateTimeDisplay = weatherData?.updateTime
+    ? new Date(weatherData.updateTime).toLocaleString('zh-HK')
+    : 'No Data';
 
   let uvLine = 'No Data';
   let uvValue = 'N/A';
@@ -125,8 +127,6 @@ function Body2() {
             <Data param='空氣污染指數' value='9' unit='甚高' />
           </div>
         </div>
-        {/* <i className='wi wi-day-cloudy text-[168px] px-3 py-12 opacity-20'></i> */}
-        {/* TODO add css for weather icon */}
         <WeatherIcon
           iconNum={weatherData?.icon}
           className=' filter grayscale opacity-40'
@@ -156,8 +156,7 @@ function Body2() {
       </div>
 
       <div className='flex gap-4 justify-center items-center'>
-        {/* TODO format update time */}
-        <p>更新時間: {updateTime}</p>
+        <p>更新時間: {updateTimeDisplay}</p>
         <p className='bg-[rgba(0,0,0,0.1)] px-2 py-1 rounded-lg'>香港天文台</p>
         <p className='bg-[rgba(0,0,0,0.1)] px-2 py-1 rounded-lg'>環境保護署</p>
       </div>
