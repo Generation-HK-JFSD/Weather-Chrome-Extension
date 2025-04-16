@@ -16,7 +16,7 @@ function Body2() {
   }
 
   function getRainfall(weatherData, selectedLocation) {
-    let rainfall = 'No Data';
+    let rainfall = '--';
     let rainData = weatherData.rainfall?.data;
 
     if (rainData) {
@@ -39,7 +39,7 @@ function Body2() {
   let maxRainfallDisplay = getRainfall(weatherData, selectedLocation);
   let temperatureDataArr;
   let locationOptions;
-  let tempOfSelectedLocation;
+  let tempOfSelectedLocation = '--';
 
   useEffect(() => {
     fetch(API_PATHS.Current_Weather_Report)
@@ -73,18 +73,18 @@ function Body2() {
   }
   let tempOfSelectedLocationDisplay = tempOfSelectedLocation
     ? `${tempOfSelectedLocation} °C`
-    : 'N/A';
+    : '--';
 
   // let { uvindex, humidity, updateTime } = weatherData;
   let uvindex = weatherData?.uvindex;
   let humidity = weatherData?.humidity;
-  let updateTime = weatherData?.updateTime ?? 'No Data';
+  let updateTime = weatherData?.updateTime ?? '未有更新';
 
-  let uvLine = 'No Data';
-  let uvValue = 'N/A';
-  let uvLevel = 'N/A';
-  let uvMsg = 'No Data';
-  let humidityValue = 'No Data';
+  let uvLine = '--';
+  let uvValue = '--';
+  let uvLevel = '';
+  let uvMsg = '--';
+  let humidityValue = '--';
 
   // warningMessage from response will be either array of string or ""
   let warningMessages = weatherData?.warningMessage;
@@ -102,8 +102,8 @@ function Body2() {
 
   return (
     <>
-      <div className='grid grid-cols-2 items-center gap-6'>
-        <div className='flex flex-col gap-4'>
+      <div className='grid grid-cols-5 items-center gap-6'>
+        <div className='col-span-3 flex flex-col gap-4'>
           <div className='flex flex-col gap-1'>
             <Select
               options={locationOptions}
@@ -113,7 +113,7 @@ function Body2() {
             />
 
             <div className='flex items-center gap-1 px-4'>
-              <p className='text-5xl'>{tempOfSelectedLocation}</p>
+              <p className='text-4xl'>{tempOfSelectedLocation}</p>
               <p className='text-2xl'>°C</p>
             </div>
           </div>
@@ -129,7 +129,7 @@ function Body2() {
         {/* TODO add css for weather icon */}
         <WeatherIcon
           iconNum={weatherData?.icon}
-          className=' filter grayscale opacity-40'
+          className='col-span-2 filter grayscale opacity-40'
         />
       </div>
 
@@ -155,7 +155,7 @@ function Body2() {
         </div> */}
       </div>
 
-      <div className='flex gap-4 justify-center items-center'>
+      <div className='flex gap-4 justify-center items-center text-sm'>
         {/* TODO format update time */}
         <p>更新時間: {updateTime}</p>
         <p className='bg-[rgba(0,0,0,0.1)] px-2 py-1 rounded-lg'>香港天文台</p>

@@ -39,8 +39,8 @@ function NineDayWeatherForecast() {
   }
 
   return (
-    <div className='grid grid-rows-10 gap-4 bg-[rgba(0,0,0,0.1)] p-4 rounded-lg'>
-      <div className='grid grid-cols-4 gap-4 items-center'>
+    <div className='grid grid-rows-10 gap-2 bg-[rgba(0,0,0,0.1)] p-4 rounded-lg'>
+      <div className='grid grid-cols-4 gap-4 items-center text-sm'>
         <div className='text-left'>未來九天</div>
         <div className='text-left'>氣溫</div>
         <div className='text-left'>相對濕度</div>

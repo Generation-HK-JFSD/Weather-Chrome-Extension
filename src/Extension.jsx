@@ -7,7 +7,7 @@ import NineDayWeatherForecast from './NineDayWeatherForecast';
 
 function Extension() {
   return (
-    <div className='bg-[#397326] p-6 flex flex-col gap-6 '>
+    <div className='bg-[#397326] p-6 flex flex-col gap-4 '>
       <div className='flex justify-between gap-6'>
         <p className='text-2xl flex-grow text-left'>
           部分時間有陽光。吹和緩偏東風。

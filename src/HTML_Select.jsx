@@ -14,7 +14,7 @@ function Select({
     >
       {options.map((el) => {
         return (
-          <option key={el.place} value={el.place}>
+          <option key={el.place} value={el.place} className='text-black'>
             {el.place}
           </option>
         );
