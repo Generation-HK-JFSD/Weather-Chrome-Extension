@@ -90,6 +90,125 @@ function districtToArea(district) {
   return area;
 }
 
+// accoording user's selected location, return
+// nearest location of Air Quality Monitoring
+function nearestAirQualityMonitoringLocation(location) {
+  let res;
+
+  switch (location) {
+    case '京士柏':
+    case '香港天文台':
+      res = 'Mong Kok';
+      break;
+
+    case '黃竹坑':
+    case '赤柱':
+      res = 'Mong Kok';
+      break;
+
+    case '打鼓嶺':
+      res = 'North';
+      break;
+
+    case '大埔':
+    case '大美督':
+      res = 'Tai Po';
+      break;
+
+    case '沙田':
+      res = 'Sha Tin';
+      break;
+
+    case '屯門':
+      res = 'Tuen Mun';
+      break;
+
+    case '將軍澳':
+      res = 'Tseung Kwan O';
+      break;
+
+    case '長洲':
+    case '赤鱲角':
+      res = 'Tung Chung';
+      break;
+
+    case '青衣':
+      res = 'Kwai Chung';
+      break;
+
+    case '荃灣可觀':
+    case '荃灣城門谷':
+      res = 'Tsuen Wan';
+      break;
+
+    case '香港公園':
+      res = 'Central/Western';
+      break;
+
+    case '筲箕灣':
+      res = 'Eastern';
+      break;
+
+    case '九龍城':
+    case '啟德跑道公園':
+    case '黃大仙':
+      res = 'Mong Kok';
+      break;
+
+    case '觀塘':
+      res = 'Kwun Tong';
+      break;
+
+    case '跑馬地':
+      res = 'Causeway Bay';
+      break;
+
+    case '深水埗':
+      res = 'Sham Shui Po';
+      break;
+
+    case '元朗公園':
+    case '流浮山':
+    case '石崗':
+      res = 'Yuen Long';
+      break;
+
+    default:
+      res = 'Mong Kok';
+      break;
+  }
+
+  return res;
+}
+
+function qahi_healthRiskToChinese(string) {
+  string = string.toLowerCase();
+
+  let res;
+  switch (string) {
+    case 'low':
+      res = '低';
+      break;
+    case 'moderate':
+      res = '中';
+      break;
+    case 'high':
+      res = '高';
+      break;
+    case 'very high':
+      res = '甚高';
+      break;
+    case 'serious':
+      res = '嚴重';
+      break;
+    default:
+      res = '-';
+      break;
+  }
+
+  return res;
+}
+
 function isObjectEmpty(obj) {
   if (typeof obj !== 'object') throw new Error('It is not object');
 
@@ -102,6 +221,11 @@ function isObjectEmpty(obj) {
   return true;
 }
 
-const helper = { districtToArea, isObjectEmpty };
+const helper = {
+  districtToArea,
+  isObjectEmpty,
+  nearestAirQualityMonitoringLocation,
+  qahi_healthRiskToChinese,
+};
 
 export default helper;
