@@ -5,5 +5,11 @@
   "description": "Show Hong Kong weather information. Data from Hong Kong Government.",
   "action": {
     "default_popup": "index.html"
+  },
+  "icons": {
+    "16": "pic51-16.png",
+    "32": "pic51-32.png",
+    "48": "pic51-48.png",
+    "128": "pic51-128.png"
   }
 }
