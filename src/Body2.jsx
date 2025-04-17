@@ -57,8 +57,8 @@ function Body2() {
   let temperatureDataArr;
   let locationOptions;
   let tempOfSelectedLocation = '--';
-  let aqhi = '-';
-  let qahi_healthRisk = '-';
+  let aqhi = '--';
+  let qahi_healthRisk = '';
 
   useEffect(() => {
     fetch(API_PATHS.Current_Weather_Report)
