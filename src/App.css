@@ -1,15 +1,10 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: "Chiron Hei HK";
-  src: url(./assets/ChironHeiHKVF.ttf);
-}
-
 #root {
   width: 100%;
   height: 100%;
   text-align: center;
-  font-family: "Chiron Hei HK", sans-serif;
+  font-family: "Chiron Hei HK WS", sans-serif;
 }
 
 .logo {
